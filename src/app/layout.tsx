@@ -26,7 +26,7 @@ export default function RootLayout({
           <div className="flex">
             <Navbar />
             
-            <div className="flex-grow container mx-auto p-4">
+            <div className="flex-grow container p-4">
             
               {children}
             </div>
