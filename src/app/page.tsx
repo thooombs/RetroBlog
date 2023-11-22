@@ -31,10 +31,8 @@ export default function Home() {
       </div>
 
 
-      <div className=" flex flex-row gap-14 mt-7 ">
       
-      <div className=" basis-1/4 "> <Posts /></div>
-      </div>
+      <Posts />
      
       
 
