@@ -33,7 +33,7 @@ export default function NewPost() {
   const handleFormSubmit = async (postData: PostData) => {
     try {
       // Send a POST request to the API route to create a new post
-      const response = await fetch('api/createPost', {
+      const response = await fetch('../api/createPost', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
