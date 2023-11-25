@@ -1,15 +1,14 @@
 
 
 import ListItem from "./ListItem"
-import { connectToDatabase } from "../../../config/mongodb";
 import { ObjectId } from "mongodb";
-import { GetStaticProps } from "next";
+import connectMongoDB from "../../../lib/mongodb";
 
 
 export const getPosts = async () => {
   try {
     let client
-    client = await connectToDatabase();
+    client = await connectMongoDB();
     const res = await fetch("http://localhost:3000/api/getPosts", {
       cache: "no-store",
     });

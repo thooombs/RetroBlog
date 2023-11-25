@@ -3,5 +3,6 @@ type BlogPost = {
     id: string,
     content: string,
     title: string,
-    date: string
+    date: string,
+    slug: string
 }
