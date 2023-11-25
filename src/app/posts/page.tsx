@@ -26,6 +26,8 @@ interface PostProps {
  export async function getServerSideProps(context: any) {
   const { id } = context.query; // Assuming the post ID is part of the URL query
 
+
+
   try {
     await connectMongoDB();
     const post = await getPostById(id);
