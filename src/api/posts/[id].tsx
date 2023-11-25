@@ -1,9 +1,10 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { GetStaticProps, NextApiRequest, NextApiResponse } from "next";
 import { ObjectId, Db} from "mongodb";
 import Post from "../../../models/post";
 import { connectToDatabase } from "../../../config/mongodb";
 import clientPromise from "../../../config/promise";
 
+import { ParsedUrlQuery } from 'querystring';
 
 export type Order = {
     description: string;
@@ -17,6 +18,7 @@ export type Post = {
     industry: string;
     orders?: Order[];
 };
+
 
 export const getPost = async (id: string | ObjectId): Promise<Post> => {
     id = typeof id === 'string' ? new ObjectId(id) : id;
@@ -53,4 +55,47 @@ export default async (
 
         res.status(200).json({ customer: data });
     } 
+};
+
+
+
+type Props = {
+    post?: Post;
+};
+
+interface Params extends ParsedUrlQuery {
+    id: string;
+}
+
+export const getStaticProps: GetStaticProps<Props, Params> = async (
+    context
+) => {
+    const params = context.params!;
+
+    try {
+        const data = await getPost(params.id);
+        console.log('!!!', data);
+
+        if (!data) {
+            return {
+                notFound: true,
+                revalidate: 60,
+            };
+        }
+
+        return {
+            props: {
+                post: JSON.parse(JSON.stringify(data)),
+            },
+            revalidate: 60,
+        };
+    } catch (err) {
+        console.log(err);
+        if (err) {
+            return {
+                notFound: true,
+            };
+        }
+        throw err;
+    }
 };
