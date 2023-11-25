@@ -1,32 +1,42 @@
-// pages/api/createPost.js
-import fs from 'fs/promises';
-import path from 'path';
+// api/createPost.js
+
+import { connectToDatabase } from '../../config/mongodb';
+
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).end(); // Method Not Allowed
-  }
+  let client; // Define client in the outer scope
 
   try {
-    const { title, date, content } = req.body;
+    // Connect to MongoDB using the promise-based function
+    client = await connectToDatabase();
 
-    // Perform logic to save the new post data, e.g., create a new .md file in the posts directory.
-    const postsDirectory = path.join(process.cwd(),'src', 'blogposts');
-    const fileName = `${Date.now()}-${title.toLowerCase().replace(/\s+/g, '-')}.md`;
-    const filePath = path.join(postsDirectory, fileName);
+    // Access the collection
+    const collection = client.db('Cluster0').collection('posts');
 
-    const fileContent = `---
-    title: ${title}
-    date: ${date}
----
-    ${content}`;
 
-    // Write the file to disk
-    await fs.writeFile(filePath, fileContent, 'utf8');
+    
+    // Insert a new document
+    const result = await collection.insertOne({
+      title: req.body.title,
+      date: req.body.date,
+      content: req.body.content,
+    });
 
-    res.status(200).json({ success: true });
+
+
+     
+
+
+    // Respond with a success message or other relevant information
+    res.status(200).json({ message: 'Post created successfully', result });
   } catch (error) {
     console.error('Error creating a new post:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    // Respond with an error status and message
+    res.status(500).json({ error: 'Failed to create a new post' });
+  } finally {
+    if (client) {
+      // Ensure that the client will close when you finish/error
+      await client.close();
+    }
   }
 }

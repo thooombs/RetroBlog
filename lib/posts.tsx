@@ -1,58 +1,67 @@
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
+import { MongoClient, ObjectId, ServerApiVersion } from 'mongodb';
+import { connectToDatabase } from '../config/mongodb';
 import { remark } from 'remark'
 import html from 'remark-html'
 
-const postsDirectory = path.join(process.cwd(), 'src', 'blogposts')
+const uri = process.env.MONGODB_URI || '';
 
-export function getSortedPostsData() {
-    // Get file names under /posts
-    const fileNames = fs.readdirSync(postsDirectory);
-    const allPostsData = fileNames.map((fileName) => {
-        // Remove ".md" from file name to get id
-        const id = fileName.replace(/\.md$/, '');
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  },
+});
 
-        // Read markdown file as string
-        const fullPath = path.join(postsDirectory, fileName);
-        const fileContents = fs.readFileSync(fullPath, 'utf8');
+const postsCollectionName = 'posts';
 
-        // Use gray-matter to parse the post metadata section
-        const matterResult = matter(fileContents);
 
-        const blogPost: BlogPost = {
-            id,
-            title: matterResult.data.title,
-            date: matterResult.data.date,
-        }
-
-        // Combine the data with the id
-        return blogPost
-    });
-    // Sort posts by date
-    return allPostsData.sort((a, b) => a.date < b.date ? 1 : -1);
+export async function getAllPosts() {
+  const database = client.db('Cluster0');
+  const collection = database.collection(postsCollectionName);
+  const posts = await collection.find().toArray();
+  return posts;
 }
 
-export async function getPostData(id: string) {
-    const fullPath = path.join(postsDirectory, `${id}.md`);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
+export async function getPostById(id: any) {
+  const database = client.db('Cluster0');
+  const collection = database.collection(postsCollectionName);
+  const post = await collection.findOne({ _id: new ObjectId(id as string) });
+  return post;
+}
 
-    // Use gray-matter to parse the post metadata section
-    const matterResult = matter(fileContents);
+export async function getSortedPostsData() {
+  await connectToDatabase();
+  const posts = await getAllPosts();
 
-    const processedContent = await remark()
-        .use(html)
-        .process(matterResult.content);
+  return posts.map((post) => ({
+    id: post._id.toString(),
+    title: post.title,
+    date: post.date,
+  })).sort((a, b) => (a.date < b.date ? 1 : -1));
+}
 
-    const contentHtml = processedContent.toString();
+export async function getPostData(client: MongoClient, id: string) {
+  await connectToDatabase();
+  const post = await getPostById(id);
 
-    const blogPostWithHTML: BlogPost & { contentHtml: string } = {
-        id,
-        title: matterResult.data.title,
-        date: matterResult.data.date,
-        contentHtml,
-    }
+  if (!post) {
+    // If post is not found, return null or handle the case accordingly
+    return null;
+  }
+  const processedContent = await remark()
+    .use(html)
+    .process(post.content);
 
-    // Combine the data with the id
-    return blogPostWithHTML
+  const contentHtml = processedContent.toString();
+
+  const blogPostWithHTML = {
+    id: post._id.toString(),
+    title: post.title,
+    date: post.date,
+    contentHtml,
+  };
+
+  return blogPostWithHTML;
 }

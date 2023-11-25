@@ -30,28 +30,29 @@ export default function NewPost() {
 
 
 
-  const handleFormSubmit = async (postData: PostData) => {
-    try {
-      // Send a POST request to the API route to create a new post
-      const response = await fetch('../api/createPost', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(postData),
-      });
+const handleFormSubmit = async (postData: PostData) => {
+  try {
+    const response = await fetch('../api/createPost', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(postData),
+    });
 
-      if (response.ok) {
-        // Redirect the user to the home page after submitting the form.
-        router.push('/');
-      } else {
-        console.error('Error creating a new post:', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error creating a new post:', error);
+    console.log('API Response:', response);
+
+    if (response.ok) {
+      // If the response status is in the range 200-299, consider it a success
+      console.log('Post created successfully!');
+      router.push('/');
+    } else {
+      console.error('Error creating a new post:', response.statusText);
     }
-  };
-
+  } catch (error) {
+    console.error('Error creating a new post:', error);
+  }
+};
   return (
     <div>
       <h3 className="text-lg">Create a New Post</h3>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import vercel from "../../public/vercel.svg";
-import Posts from "./components/posts";
+import Posts from "./components/PostList";
 
 export default function Home() {
   return (
@@ -32,7 +32,7 @@ export default function Home() {
 
 
       
-      <Posts />
+      <Posts  />
      
       
 
