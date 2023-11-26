@@ -1,5 +1,5 @@
 "use client";
-import { getPost, Post as BlogPost } from "@/api/posts/getPost";
+import { getPost, Post as BlogPost } from "../../../pages/api/getPost";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 

@@ -1,7 +1,7 @@
 import { GetStaticProps, NextApiRequest, NextApiResponse } from "next";
 import { ObjectId, Db} from "mongodb";
-import Post from "../../../models/post";
-import clientPromise from "../../../config/promise";
+import Post from "../../models/post";
+import clientPromise from "../../config/promise";
 
 import { ParsedUrlQuery } from 'querystring';
 
@@ -29,8 +29,8 @@ export const getPost = async (slug: string | ObjectId): Promise<Post | null> => 
       .db('Cluster0')
       .collection('posts')
       .findOne({ _id: slug })) as Post;
+      
     return data || null; // Return null if data is falsy (not found)
   };
-
 
 

@@ -1,8 +1,8 @@
 
 import { GetStaticProps, NextApiRequest, NextApiResponse } from "next";
 import { ObjectId, Db} from "mongodb";
-import Post from "../../../models/post";
-import clientPromise from "../../../config/promise";
+import Post from "../../models/post";
+import clientPromise from "../../config/promise";
 
 import { ParsedUrlQuery } from 'querystring';
 
@@ -59,9 +59,6 @@ export default async (
 
 
 
-type Props = {
-    post?: Post;
-};
 
 interface Params extends ParsedUrlQuery {
     id: string;
