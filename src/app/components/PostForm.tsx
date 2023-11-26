@@ -18,7 +18,7 @@ interface PostFormProps {
   
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    onSubmit({ title: `'${title}'`, date: `'${currentDate}'`, content });
+    onSubmit({ title: `${title}`, date: `${currentDate}`, content });
   };
 
   return (

@@ -1,22 +1,43 @@
 import Link from "next/link"
-import getFormattedDate from "@/../lib/getFormattedDate"
+// import getFormattedDate from "../../../lib/getFormattedDate"
+
+interface a {
+    _id: string
+    title: string
+    date: string
+    content: string
+}
 
 
 
 type Props = {
-    post: BlogPost
+    posts: BlogPost[] | null
 }
 
-
-export default function ListItem({ post }: Props) {
-    const { title, date } = post
-    const formattedDate = getFormattedDate(date)
-
+export default function ListItem({ posts }: Props) {
+    
+    
+    // const { title, date } = posts
+    //  console.log('data ', date)
+    // const formattedDate = getFormattedDate(date)
+    if (!posts) {
+        return null; // Or some fallback behavior for when posts is null
+    }
     return (
-        <li className="mt-4 list-[square] font-medium dark:text-white/90">
-            <Link className="underline text-blue-500 hover:text-black/90 dark:hover:text-white" key={post._id}   href={`/posts/${post._id}`}>{title}</Link>
-            <br />
-            <p className="text-sm mt-1">{formattedDate}</p>
-        </li>
-    )
-}
+        <ul>
+            {posts.map(post => (
+                <li className="mt-4 list-[square] font-medium dark:text-white/90" key={post._id}>
+                    <Link className="underline text-blue-500 hover:text-black/90 dark:hover:text-white" href={`/teste/${post._id}`}>
+                        {post.title}
+                    </Link>
+                </li>
+            ))}
+        </ul>
+
+          
+       
+    )}
+    
+
+
+ 
