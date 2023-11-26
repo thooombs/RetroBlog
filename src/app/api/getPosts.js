@@ -3,7 +3,7 @@
 
 import { connectToDatabase } from '../../config/mongodb';
 
-export default async function getPosts(req, res) {
+export default async function handler(req, res) {
   if (req.method !== 'GET') {
     return res.status(405).end(); // Method Not Allowed
   }

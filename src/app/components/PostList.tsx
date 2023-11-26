@@ -5,9 +5,11 @@ import { ObjectId } from "mongodb";
 import { connectToDatabase } from "../../../config/mongodb";
 import { getPost } from "../../../pages/api/getPost";
 
+
 const get = async () => {
+  
   try {
-    const res = await fetch("https://retro-blog-kappa.vercel.app/api/getPosts", {
+    const res = await fetch("/api/getPosts", {
       cache: "no-store",
     });
      
@@ -32,7 +34,7 @@ export type Post = {
 // RETORNANDO OS POSTS
 
 
-export default async function Post() {
+export default async function PostList() {
     // const [posts, setPosts] = useState<BlogPost[]>([]);
     const posts = await get();
  
@@ -40,9 +42,9 @@ export default async function Post() {
     return (
         <section className="mt-6 max-w-2xl ml-5 ">
             {/* <h2 className=" font-bold dark:text-white/90">Blog</h2> */}
-            <ul className="flex flex-col">
+            <ul className="flex flex-col" >
 
-              <ListItem posts={posts}/>
+              <ListItem posts={posts} />
          
                 {/* {posts.map((post: any) => (
                     <ListItem  key={post._id} post={post} />

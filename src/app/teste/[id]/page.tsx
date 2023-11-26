@@ -5,10 +5,9 @@ import { connectToDatabase } from "../../../../config/mongodb";
     try {
       let client
       client = await connectToDatabase();
-      const res = await fetch("https://retro-blog-kappa.vercel.app/api/getPosts", {
-        cache: "no-store",
-      });
-       
+      const res = await fetch('/api/getPosts');
+      
+        
   
       if (!res.ok) {
         throw new Error("Failed to fetch topics");

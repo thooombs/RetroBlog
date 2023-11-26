@@ -14,14 +14,11 @@ type Props = {
     posts: BlogPost[] | null
 }
 
-export default function ListItem({ posts }: Props) {
+export default function listItem({ posts }: Props) {
     
     
-    // const { title, date } = posts
-    //  console.log('data ', date)
-    // const formattedDate = getFormattedDate(date)
     if (!posts) {
-        return null; // Or some fallback behavior for when posts is null
+        return null; 
     }
     return (
         <ul>
