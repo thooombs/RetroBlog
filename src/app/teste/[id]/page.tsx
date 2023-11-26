@@ -1,11 +1,11 @@
 import Link from "next/link";
-import connectMongoDB from "../../../../lib/mongodb";
+import { connectToDatabase } from "../../../../config/mongodb";
 
  const getPosts = async () => {
     try {
       let client
-      client = await connectMongoDB();
-      const res = await fetch("http://localhost:3000/api/getPosts", {
+      client = await connectToDatabase();
+      const res = await fetch("https://retro-blog-kappa.vercel.app/api/getPosts", {
         cache: "no-store",
       });
        

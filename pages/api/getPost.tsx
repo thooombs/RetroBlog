@@ -24,7 +24,7 @@ export type Post = {
 export const getPost = async (slug: string | ObjectId): Promise<Post | null> => {
     slug = typeof slug === 'string' ? new ObjectId(slug) : slug;
     const mongoClient = await clientPromise;
-  
+  console.log('from get post')
     const data = (await mongoClient
       .db('Cluster0')
       .collection('posts')

@@ -2,14 +2,12 @@
 
 import ListItem from "./ListItem"
 import { ObjectId } from "mongodb";
-import connectMongoDB from "../../../lib/mongodb";
+import { connectToDatabase } from "../../../config/mongodb";
+import { getPost } from "../../../pages/api/getPost";
 
-
-export const getPosts = async () => {
+const get = async () => {
   try {
-    let client
-    client = await connectMongoDB();
-    const res = await fetch("http://localhost:3000/api/getPosts", {
+    const res = await fetch("https://retro-blog-kappa.vercel.app/api/getPosts", {
       cache: "no-store",
     });
      
@@ -34,9 +32,9 @@ export type Post = {
 // RETORNANDO OS POSTS
 
 
-export default async function Posts() {
+export default async function Post() {
     // const [posts, setPosts] = useState<BlogPost[]>([]);
-    const posts = await getPosts();
+    const posts = await get();
  
   
     return (

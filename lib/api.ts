@@ -1,5 +1,4 @@
 import { connectToDatabase } from "../config/mongodb";
-import connectMongoDB from "./mongodb";
 import mongoose from "mongoose";
 
 type Items = {
