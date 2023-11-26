@@ -1,3 +1,4 @@
+import { connectToDatabase } from "../config/mongodb";
 import connectMongoDB from "./mongodb";
 import mongoose from "mongoose";
 
@@ -11,7 +12,7 @@ const items: Items = {};
 
 export async function getPostBySlug(slug: string) {
   try {
-    await connectMongoDB();
+    await connectToDatabase();
 
     const database = mongoose.connection.db;
     const collection = database.collection('posts');

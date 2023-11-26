@@ -20,21 +20,6 @@ interface TesteProps {
 }
 
 
-export async function getslug({params}: TesteProps){
-
-  const staticData = await fetch(`https://api.github.com/users/tt`, { cache: 'force-cache' })
-  console.log(staticData)
-  //  es
- 
-  //poise, sera q ta certo esse sllug aqui, nos docs tava assim
-    
-console.log("staticData", staticData)
-// ... acho q ta errada
-  return (
-   {staticData} 
-  )
-}
-
 
 
 
