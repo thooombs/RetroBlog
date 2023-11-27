@@ -9,7 +9,9 @@ import { getPost } from "../../../pages/api/getPost";
 const get = async () => {
   
   try {
-    const res = await fetch("/api/getPosts", {
+    let client
+    client = await connectToDatabase();
+    const res = await fetch("https://retro-blog-kappa.vercel.app/api/getAllPosts", {
       cache: "no-store",
     });
      

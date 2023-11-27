@@ -5,7 +5,7 @@ import { connectToDatabase } from "../../../../config/mongodb";
     try {
       let client
       client = await connectToDatabase();
-      const res = await fetch('/api/getPosts');
+      const res = await fetch('https://retro-blog-kappa.vercel.app/api/getAllPosts');
       
         
   
@@ -55,72 +55,3 @@ export default async function Teste({ params }: IDParams){
    )
 }
 
- // CALMA CALMCA CALMA CALMCA LAMCA // VOU COMENTAR RAPIDAO OQ TU TA FAZENDO RAPIDO
-
-
-
-// type Props = {
-//     post: BlogPost
-//     morePosts: BlogPost[]
-//     preview?: boolean
-//   }
-  
-  
-//   interface TesteProps {
-//     params: {
-//       id: string
-//     }
-//   }
-  
-  
-//   export async function getslug({params}: TesteProps){
-  
-//     const staticData = await fetch(`https://api.github.com/users/tt`, { cache: 'force-cache' })
-//     console.log(staticData)
-//     console.log(params.slug)
-//     //  es
-   
-//     //poise, sera q ta certo esse sllug aqui, nos docs tava assim
-      
-//   console.log("staticData", staticData)
-//   // ... acho q ta errada
-//     return (
-//      {staticData} 
-//     )
-//   }
-  
-  
-  
-  
-  
-//   export default async function Post({ post }: Props, {params}: Params) {
-//     const router = useRouter()
-//     const response = await getslug()
-   
-   
-    
-//     console.log("aaaaaaa", response)
-//     const title = `${post.title} | Next.js Blog Example with `
-//     if (!router.isFallback && !post?.slug) {
-//       return <ErrorPage statusCode={404} />
-//     }
-//     return (
-      
-//             <>
-//               <article className="mb-32">
-                
-//                   <title>{title}</title>
-//                <p>
-               
-//                {params.slug}
-//                   title={post.title}
-//                   date={post.date}
-//                   content={post.content}
-//                   </p>
-                
-//               </article>
-//             </>
-        
-//     )
-//   }
-  
