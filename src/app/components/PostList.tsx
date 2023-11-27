@@ -1,6 +1,6 @@
 
 
-import ListItem from "./ListItem"
+import ListItem from "./ListItem";
 import { ObjectId } from "mongodb";
 import { connectToDatabase } from "../../../config/mongodb";
 import { getPost } from "../../../pages/api/getPost";

@@ -1,7 +1,7 @@
 // components/Navbar.js
 import Link from "next/link";
 
-const navbar = () => {
+const Navbar = () => {
   return (
     <nav className="  p-4 flex flex-col border-r  border-orange-500">
       <li className="list-[square] font-medium">
@@ -80,4 +80,4 @@ const navbar = () => {
   );
 };
 
-export default navbar;
+export default Navbar;
