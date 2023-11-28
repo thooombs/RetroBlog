@@ -3,9 +3,10 @@ import { connectToDatabase } from "../../../../config/mongodb";
 
  const getPosts = async () => {
     try {
+      const SERVER_ENDPOINT = process.env.SERVER_ENDPOINT || "http://localhost:3000";
       let client
       client = await connectToDatabase();
-      const res = await fetch('https://retro-blog-kappa.vercel.app/api/getAllPosts');
+      const res = await fetch(`${SERVER_ENDPOINT}/api/getPosts`);
       
         
   

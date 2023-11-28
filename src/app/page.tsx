@@ -1,8 +1,13 @@
 import Image from "next/image";
 import vercel from "../../public/vercel.svg";
-import Posts from "./components/PostList";
+import PostList from "./components/PostList";
 
-export default function Home() {
+
+
+
+
+
+export default function Home({ posts }: any) {
   return (
     <main className="">
       <div className="flex flex-row border-b pb-5">
@@ -32,10 +37,11 @@ export default function Home() {
 
 
       
-      <Posts  />
+      <PostList  />
      
       
 
     </main>
   );
 }
+

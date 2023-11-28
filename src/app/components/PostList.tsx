@@ -1,17 +1,17 @@
 
 
-import ListItem from "./ListItem";
+import ListItem from "./ListItem"
 import { ObjectId } from "mongodb";
 import { connectToDatabase } from "../../../config/mongodb";
-import { getPost } from "../../../pages/api/getPost";
 
 
 const get = async () => {
   
   try {
     let client
+    const SERVER_ENDPOINT = process.env.SERVER_ENDPOINT || "http://localhost:3000";
     client = await connectToDatabase();
-    const res = await fetch("https://retro-blog-kappa.vercel.app/api/getAllPosts", {
+    const res = await fetch(`${SERVER_ENDPOINT}/api/getPosts`, {
       cache: "no-store",
     });
      
