@@ -12,7 +12,7 @@ const get = async () => {
     const SERVER_ENDPOINT = process.env.SERVER_ENDPOINT || "http://localhost:3000";
     client = await connectToDatabase();
     const res = await fetch(`${SERVER_ENDPOINT}/api/getPosts`, {
-      cache: "force-cache",
+      cache: "reload",
     });
      
 

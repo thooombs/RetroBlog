@@ -7,6 +7,7 @@ import { options } from "../api/auth/[...nextauth]/options";
 import { getServerSession } from "next-auth/next";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { connectToDatabase } from "../../../config/mongodb";
 
 interface PostData {
   title: string;
@@ -24,9 +25,9 @@ export default function NewPost() {
 
   const handleFormSubmit = async (postData: PostData) => {
     try {
-      const SERVER_ENDPOINT =
-        process.env.SERVER_ENDPOINT || "http://localhost:3000";
-
+      
+      const SERVER_ENDPOINT = process.env.SERVER_ENDPOINT || "http://localhost:3000";
+      
       const response = await fetch(`${SERVER_ENDPOINT}/api/createPost`, {
         method: "POST",
         headers: {
@@ -34,6 +35,8 @@ export default function NewPost() {
         },
         body: JSON.stringify(postData),
       });
+
+
 
       console.log("API Response:", response);
 
