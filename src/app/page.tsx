@@ -5,11 +5,29 @@ import { connectToDatabase } from "../../config/mongodb";
 
 
 
+const getPosts = async () => {
+  try {
+    const SERVER_ENDPOINT = process.env.SERVER_ENDPOINT || "http://localhost:3000";
+    let client
+    client = await connectToDatabase();
+    const res = await fetch(`${SERVER_ENDPOINT}/api/getPosts`);
+    
+      
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch topics");
+    }
+   
+    return res.json();
+  } catch (error) {
+    console.log("Error loading topics: ", error);
+  }
+};
 
 
 
-
-export default function Home() {
+export default function Home({ posts }: any) {
+  const nada = getPosts()
   return (
     <main className="">
       <div className="flex flex-row border-b pb-5">
