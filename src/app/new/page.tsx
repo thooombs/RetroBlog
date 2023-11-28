@@ -1,14 +1,10 @@
 "use client";
 // pages/new.js
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import PostForm from "../components/PostForm";
-import { options } from "../api/auth/[...nextauth]/options";
-import { getServerSession } from "next-auth/next";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
-import { connectToDatabase } from "../../../config/mongodb";
-
+   
 interface PostData {
   title: string;
   content: string;
@@ -25,7 +21,7 @@ export default function NewPost() {
 
   const handleFormSubmit = async (postData: PostData) => {
     try {
-      
+    
       const SERVER_ENDPOINT = process.env.SERVER_ENDPOINT || "http://localhost:3000";
       
       const response = await fetch(`${SERVER_ENDPOINT}/api/createPost`, {

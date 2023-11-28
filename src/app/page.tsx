@@ -2,7 +2,7 @@ import Image from "next/image";
 import vercel from "../../public/vercel.svg";
 import PostList from "./components/PostList";
 import { connectToDatabase } from "../../config/mongodb";
-
+import PostComp from "./components/PostComp";
 
 
 
@@ -36,7 +36,6 @@ export default function Home() {
       </div>
 
 
-      
       <PostList  />
      
       

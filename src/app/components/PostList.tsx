@@ -4,7 +4,6 @@ import ListItem from "./ListItem"
 import { ObjectId } from "mongodb";
 import { connectToDatabase } from "../../../config/mongodb";
 
-
 const get = async () => {
   
   try {
@@ -12,7 +11,7 @@ const get = async () => {
     const SERVER_ENDPOINT = process.env.SERVER_ENDPOINT || "http://localhost:3000";
     client = await connectToDatabase();
     const res = await fetch(`${SERVER_ENDPOINT}/api/getPosts`, {
-      cache: "reload",
+      cache: "no-cache",
     });
      
 

@@ -3,7 +3,7 @@ import { connectToDatabase } from "../../../../config/mongodb";
 
 
 
-
+ 
 
   const get = async () => {
   
@@ -12,7 +12,7 @@ import { connectToDatabase } from "../../../../config/mongodb";
       const SERVER_ENDPOINT = process.env.SERVER_ENDPOINT || "http://localhost:3000";
       client = await connectToDatabase();
       const res = await fetch(`${SERVER_ENDPOINT}/api/getPosts`, {
-        cache: "force-cache",
+        cache: "no-cache",
       });
        
   
