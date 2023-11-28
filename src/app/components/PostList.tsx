@@ -12,7 +12,7 @@ const get = async () => {
     const SERVER_ENDPOINT = process.env.SERVER_ENDPOINT || "http://localhost:3000";
     client = await connectToDatabase();
     const res = await fetch(`${SERVER_ENDPOINT}/api/getPosts`, {
-      cache: "no-store",
+      cache: "force-cache",
     });
      
 
@@ -39,7 +39,6 @@ export type Post = {
 export default async function PostList() {
     // const [posts, setPosts] = useState<BlogPost[]>([]);
     const posts = await get();
- 
   
     return (
         <section className="mt-6 max-w-2xl ml-5 ">

@@ -15,7 +15,7 @@ export default async function handler(
 
     // Fetch posts from MongoDB
     const posts = await collection.find().toArray();
-    console.log("from get posts");
+    console.log("from get post");
     // Close the MongoDB client
     await client.close();
 

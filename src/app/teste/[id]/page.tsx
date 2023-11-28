@@ -1,14 +1,20 @@
 import Link from "next/link";
 import { connectToDatabase } from "../../../../config/mongodb";
 
- const getPosts = async () => {
+
+
+
+
+  const get = async () => {
+  
     try {
-      const SERVER_ENDPOINT = process.env.SERVER_ENDPOINT || "http://localhost:3000";
       let client
+      const SERVER_ENDPOINT = process.env.SERVER_ENDPOINT || "http://localhost:3000";
       client = await connectToDatabase();
-      const res = await fetch(`${SERVER_ENDPOINT}/api/getPosts`);
-      
-        
+      const res = await fetch(`${SERVER_ENDPOINT}/api/getPosts`, {
+        cache: "force-cache",
+      });
+       
   
       if (!res.ok) {
         throw new Error("Failed to fetch topics");
@@ -19,7 +25,9 @@ import { connectToDatabase } from "../../../../config/mongodb";
       console.log("Error loading topics: ", error);
     }
   };
-  
+
+
+
 
 
 interface IDParams {
@@ -29,10 +37,10 @@ interface IDParams {
 }
 
 export default async function Teste({ params }: IDParams){
-    const data = await getPosts()
-    console.log(data)
+    const data = await get()
+    console.log('DATA', data)
 
-
+    
     const uniqueProduct = data.find((post: BlogPost) => post._id === params.id)
     console.log("uniqueProduct", uniqueProduct)
 

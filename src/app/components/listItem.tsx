@@ -20,13 +20,21 @@ export default function listItem({ posts }: Props) {
     if (!posts) {
         return null; 
     }
+
+
+
+     // Sort posts by date in descending order
+  const sortedPosts = [...posts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+
     return (
         <ul>
-            {posts.map(post => (
+            {sortedPosts.map(post => (
                 <li className="mt-4 list-[square] font-medium dark:text-white/90" key={post._id}>
                     <Link className="underline text-blue-500 hover:text-black/90 dark:hover:text-white" href={`/teste/${post._id}`}>
-                        {post.title}
+                        {post.title} 
                     </Link>
+                   
                 </li>
             ))}
         </ul>
