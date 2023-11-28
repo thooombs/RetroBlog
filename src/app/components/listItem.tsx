@@ -11,7 +11,7 @@ interface a {
 
 
 type Props = {
-    posts: BlogPost[] | null
+    posts: BlogPost[] 
 }
 
 export default function listItem({ posts }: Props) {
