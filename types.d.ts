@@ -7,4 +7,5 @@ type BlogPost = {
     title: string,
     date: string,
     slug: string
+    time: string
 }

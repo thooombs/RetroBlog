@@ -4,7 +4,7 @@ import { useState, FormEvent } from "react";
 
 
 interface PostFormProps {
-    onSubmit: (postData: { title: string; date: string; content: string }) => void;
+    onSubmit: (postData: { title: string; date: string; time:string; content: string }) => void;
   }
 
 
@@ -16,9 +16,22 @@ interface PostFormProps {
   // Get the current date in a string format
   const currentDate = new Date().toLocaleDateString();
   
+
+
+ 
+
+
+  const date = new Date(Date.UTC(2012, 11, 12, 3, 0, 0));
+
+  const currentTime = date.toLocaleTimeString()
+
+console.log(currentTime);
+
+
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    onSubmit({ title: `${title}`, date: `${currentDate}`, content });
+    onSubmit({ title: `${title}`, date: `${currentDate}`, time: `${currentTime}`, content });
   };
 
   return (

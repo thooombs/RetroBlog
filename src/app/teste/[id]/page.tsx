@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { connectToDatabase } from "../../../../config/mongodb";
-
+import { useRouter } from "next/navigation";
+import RemoveBtn from "@/app/components/Removebutton";
 
 
  
@@ -26,7 +27,7 @@ import { connectToDatabase } from "../../../../config/mongodb";
     }
   };
 
-
+ 
 
 
 
@@ -41,26 +42,37 @@ export default async function Teste({ params }: IDParams){
     console.log('DATA', data)
 
     
-    const uniqueProduct = data.find((post: BlogPost) => post._id === params.id)
+    const uniqueProduct = await data.find((post: BlogPost) => post._id === params.id)
     console.log("uniqueProduct", uniqueProduct)
 
    console.log("params", params.id)
  
+
+   const paragraphs = uniqueProduct.content.split('\n');
+  
+
+
    return (
+   
     <div>
-         <Link className="bg-blue-500 text-white" href="/" > GO BACK</Link>
-        {uniqueProduct && (
-      <div>
-        <h2>{uniqueProduct.title}</h2>
-        <p>{uniqueProduct.content}</p>
-        <p>{uniqueProduct.date}</p>
+         <Link className="bg-blue-500 text-white  " href="/" > ← Go Back </Link>
        
+         
+        {uniqueProduct && (
+      <div className="my-2">
+        <h2 className="text-lg mb-1">{uniqueProduct.title}</h2>
+        <p className="mb-5 ">{uniqueProduct.content}</p>
+        
+        <p className="font-light">{uniqueProduct.date}</p>
+
+       
+        <RemoveBtn id={uniqueProduct._id} />
       </div>
+   
 
     )}
-   
-    </div>
     
+    </div>
    )
 }
 

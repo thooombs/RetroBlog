@@ -1,4 +1,5 @@
 import Link from "next/link"
+import RemoveBtn from "./Removebutton"
 // import getFormattedDate from "../../../lib/getFormattedDate"
 
 interface a {
@@ -6,6 +7,7 @@ interface a {
     title: string
     date: string
     content: string
+    time: string
 }
 
 
@@ -24,7 +26,7 @@ export default function listItem({ posts }: Props) {
 
 
      // Sort posts by date in descending order
-  const sortedPosts = [...posts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const sortedPosts = [...posts].sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
 
 
     return (
@@ -34,7 +36,7 @@ export default function listItem({ posts }: Props) {
                     <Link className="underline text-blue-500 hover:text-black/90 dark:hover:text-white" href={`/teste/${post._id}`}>
                         {post.title} 
                     </Link>
-                   
+                    
                 </li>
             ))}
         </ul>

@@ -21,10 +21,11 @@ export default function NewPost() {
 
   const handleFormSubmit = async (postData: PostData) => {
     try {
-    
+      
       const SERVER_ENDPOINT = process.env.SERVER_ENDPOINT || "http://localhost:3000";
       
-      const response = await fetch(`${SERVER_ENDPOINT}/api/createPost`, {
+      console.log("SERVER_ENDPOINT:", process.env.SERVER_ENDPOINT);
+      const response = await fetch(`/api/createPost`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,6 +41,7 @@ export default function NewPost() {
         // If the response status is in the range 200-299, consider it a success
         console.log("Post created successfully!");
         router.push("/");
+        router.refresh()
       } else {
         console.error("Error creating a new post:", response.statusText);
       }

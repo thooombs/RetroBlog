@@ -10,7 +10,7 @@ import PostComp from "./components/PostComp";
 export default function Home() {
   return (
     <main className="">
-      <div className="flex flex-row border-b pb-5">
+      <div className="flex flex-row border-b pb-5 ">
         <Image
           src={vercel}
           width={100}
@@ -18,8 +18,8 @@ export default function Home() {
           alt="Picture of the author"
           className="mr-5"
         ></Image>
-        <div>
-          <h2 className="text-blue-700 underline">Test Link for Article</h2>
+        <div className="">
+          <h2 className="text-blue-700 underline ">Test Link for Article</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipnseamus fermentum quis
             ante interdum posuere. Sed sagittis ipsum ac felis consectetur
