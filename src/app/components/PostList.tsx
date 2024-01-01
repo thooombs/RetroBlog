@@ -42,7 +42,7 @@ export default async function PostList() {
     return (
         <section className="max-w-2xl ml-5 ">
             {/* <h2 className=" font-bold dark:text-white/90">Blog</h2> */}
-            <ul className="flex flex-col" >
+            <ul className="flex flex-row" >
 
               <ListItem posts={posts} />
          

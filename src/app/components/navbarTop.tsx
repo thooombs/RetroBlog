@@ -3,8 +3,9 @@ import Link from "next/link";
 const NavbarTop = () => {
   return (
     <div>
-      <nav >
-        <ul className="bg-black flex font-['Segoe UI'] basis-1/2 justify-end gap-5 px-5 py-1 font-medium ">
+      <nav className="">
+     
+        <ul className="bg-black flex      items-end   justify-end gap-5 px-8 py-1 text-[13px]">
           <li>
             <Link
               className="  text-white hover:text-blue-700 "
@@ -22,40 +23,43 @@ const NavbarTop = () => {
             </Link>
           </li>
           <li>
-            <Link className="  text-white hover:text-blue-700  border-l pl-3 h-1 border-white " href="/new">
+            <Link
+              className="  text-white hover:text-blue-700  border-l pl-3 h-1 border-white "
+              href="/new"
+            >
               Posts
             </Link>
           </li>
         </ul>
-      </nav >
-      <div className="h-20 bg-blue-300 flex justify-between items-start">
-        <h2 className="text-white flex-item  p-10 font-bold">LOGO</h2>
-        <h2 className="text-black flex-item  p-10 font-bold">LOGO</h2>
-      </div>
-      <div className=" flex flex-wrap  px-4 gap-4 bg-blue-400 py-1 font-medium text-white">
-        <a href="/" className="   hover:text-blue-700 ">
-          Home
-        </a>
-        <a href="/about" className="  hover:text-blue-700 border-l pl-4 border-white">
-          About
-        </a>
+      </nav>
 
-        <a href="/" className="  hover:text-blue-700 border-l pl-4 border-white">
-          Posts
-        </a>
-        <a href="/" className="   hover:text-blue-700 border-l pl-4 border-white">
-          Test
-        </a>
-        <a href="/about" className="  hover:text-blue-700 border-l pl-4 border-white">
-          Development
-        </a>
-        <a href="/" className="  hover:text-blue-700 border-l pl-4 border-white">
-          Users
-        </a>
-        <a href="/" className="  hover:text-blue-700 border-l pl-4 border-white">
-          Blog
-        </a>
+      <div className="flex flex-row mb-px ">
+        <div className="h-20 basis-1/6  bg-[#6699cc]  justify-start items-center ">
+          <h2 className="text-white  p-7  font-bold text-sm md:text-base">
+            Thombs Blog
+          </h2>
+        </div>
+        <div className="h-20 basis-5/6  flex justify-end items-center  bg-white     ">
+          <h2 className="text-black  p-7  pt-10 font-light text-sm ">
+            Web Development
+          </h2>
+        </div>
       </div>
+
+      <nav className="navbar ">
+        <ul className=" navbar-nav flex flex-wrap  px-4 gap-4 bg-[#6699cc] py-1 font-semibold text-white  border-top border-top-2 border-white">
+          <li>
+            <Link className="  text-white hover:text-blue-700   " href="/">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link className="  text-white hover:text-blue-700   " href="/about">
+              About
+            </Link>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 };

@@ -7,9 +7,10 @@ import AuthProvider from "./context/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
+
 export const metadata: Metadata = {
-  title: "Ku's Blog",
-  description: "Blog of Ku",
+  title: "Thombs' Blog",
+  description: "Blog of Thombs",
 };
 
 export default function RootLayout({
@@ -19,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`font-['Arial MT']`}>
         <AuthProvider>
         <NavbarTop />
         <div className=" flex flex-col">
